@@ -1,37 +1,25 @@
-# Projet de Suivi d'Emails pour Avis de Valeurs Immobilières
+---
 
-## Objectif
-Automatiser le suivi des emails d'avis de valeurs envoyés aux clients via notre logiciel immobilier. Le projet permet de détecter les envois d'emails, suivre les réponses des clients, envoyer des rappels automatiques en cas de non-réponse, et intégrer les rappels dans Google Agenda pour une meilleure gestion du temps.
+# Instructions Détaillées pour le Script de Création de Tâches
 
-## Fonctionnalités
-- **Détecter les envois d'avis de valeurs** : Identifie les emails envoyés depuis la boîte "envoyé" d'o2switch.
-- **Suivi des réponses** : Vérifie si les clients ont répondu aux emails envoyés.
-- **Rappels automatiques** : Envoie des rappels si aucune réponse n'est reçue après 7 et 15 jours.
-- **Intégration avec Google Agenda** : Crée automatiquement des événements de rappel dans Google Agenda pour les suivis.
-- **Analyse de sentiment** (optionnel) : Évalue le ton des réponses reçues.
+Ce script est conçu pour automatiser la création de tâches dans Google Tasks basées sur des e-mails spécifiques envoyés. Voici les critères et fonctionnalités spécifiques :
 
-## Technologie Utilisée
-- **Python** : Langage de programmation.
-- **imaplib et smtplib** : Pour interagir avec les serveurs de messagerie IMAP et SMTP d'o2switch.
-- **SQLite** : Pour la gestion de la base de données.
-- **schedule** : Pour la planification des tâches.
-- **Google Calendar API** : Pour intégrer les rappels dans Google Agenda.
+## Critères d'E-mail
 
-## Mise en Place
-1. **Installation des dépendances** :
-   ```
-   pip install imaplib smtplib schedule sqlite3 google-api-python-client google-auth-httplib2 google-auth-oauthlib
-   ```
-2. **Configuration** :
-   - Configurez l'accès à votre serveur IMAP et SMTP chez o2switch.
-   - Suivez la documentation de Google pour configurer l'accès à l'API Google Calendar.
+- **Objet du Mail** : L'objet de chaque e-mail traité doit suivre la structure "Type - Référence - Adresse - Vendeur". Le script recherche spécifiquement les e-mails dont l'objet commence par "Avis de valeur" et s'assure qu'il est bien suivi d'une référence, ce qui valide la création d'une tâche dans Google Tasks.
 
-3. **Lancement du script** : Exécutez le script pour démarrer le suivi. Planifiez une exécution régulière avec un outil comme cron.
+## Création de Tâche
 
-## Utilisation
-- Le script vérifie les réponses et envoie des rappels automatiquement.
-- Les rappels sont également ajoutés à Google Agenda pour un suivi facile.
+- **Titre de la Tâche** : Chaque tâche créée portera le titre "RAPPEL Type - Référence - Adresse - Vendeur", reprenant l'intégralité de l'objet de l'e-mail correspondant.
+- **Date et Heure** : La tâche est programmée à la date et l'heure d'envoi de l'e-mail.
+- **Récurrence Personnalisée** : Les tâches seront récurrentes, avec une répétition toutes les 2 semaines, le même jour que la création de la tâche, et ce pour un total de 50 occurrences.
 
-## Sécurité et Confidentialité
-- Conformez-vous aux réglementations sur la confidentialité des données (ex. RGPD).
-- Sécurisez les informations d'identification et les données personnelles.
+## Configuration et Sécurité
+
+Suivez les étapes de configuration décrites précédemment pour activer les API nécessaires, installer les dépendances, et configurer les paramètres IMAP et Google API. Assurez-vous de sécuriser votre fichier `credentials.json` et de ne jamais partager vos informations d'accès.
+
+## Planification Automatique
+
+Pour une efficacité maximale, planifiez l'exécution de ce script deux fois par jour à des moments précis (par exemple, à 12h00 et 21h00) en utilisant `cron` sur Linux/Mac ou le Planificateur de Tâches sur Windows. Cela garantira que les tâches sont créées régulièrement sans intervention manuelle.
+
+---
