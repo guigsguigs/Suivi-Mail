@@ -1,5 +1,3 @@
----
-
 # Instructions Détaillées pour le Script de Création de Tâches
 
 Ce script est conçu pour automatiser la création de tâches dans Google Tasks basées sur des e-mails spécifiques envoyés. Voici les critères et fonctionnalités spécifiques :
@@ -21,5 +19,3 @@ Suivez les étapes de configuration décrites précédemment pour activer les AP
 ## Planification Automatique
 
 Pour une efficacité maximale, planifiez l'exécution de ce script deux fois par jour à des moments précis (par exemple, à 12h00 et 21h00) en utilisant `cron` sur Linux/Mac ou le Planificateur de Tâches sur Windows. Cela garantira que les tâches sont créées régulièrement sans intervention manuelle.
-
----
